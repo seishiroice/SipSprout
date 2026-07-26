@@ -3,129 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SipSprout • Grow with Every Sip</title>
+    <title>SipSprout • Главная</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#" class="logo">
+    <div class="app-shell" id="appShell">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+
+        <header class="app-header">
+            <div class="logo">
                 <span class="logo-emoji">🌱</span>
                 <span>SipSprout</span>
+            </div>
+            <span class="streak-pill">🔥 3 дня подряд</span>
+        </header>
+
+        <main class="dashboard">
+            <section class="plant-stage">
+                <div class="plant-toolbar">
+                    <button class="toolbar-icon-btn" id="openCalendar" aria-haspopup="dialog" aria-label="Календарь прогресса">
+                        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <line x1="8" y1="3" x2="8" y2="7"></line>
+                            <line x1="16" y1="3" x2="16" y2="7"></line>
+                        </svg>
+                    </button>
+
+                    <button class="toolbar-icon-btn" id="openWardrobe" aria-haspopup="dialog" aria-label="Гардероб">
+                        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                            <line x1="12" y1="3" x2="12" y2="21"></line>
+                            <circle cx="9.5" cy="12" r="0.8" fill="currentColor" stroke="none"></circle>
+                            <circle cx="14.5" cy="12" r="0.8" fill="currentColor" stroke="none"></circle>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="plant-glow" id="plantGlow"></div>
+                <div class="plant" id="plant">
+                    <div class="plant-leaf leaf-a"></div>
+                    <div class="plant-leaf leaf-b"></div>
+                    <div class="plant-leaf leaf-c"></div>
+                    <div class="plant-leaf leaf-d"></div>
+                    <div class="plant-leaf leaf-e"></div>
+                    <div class="plant-stem"></div>
+                </div>
+                <div class="pot" id="pot">
+                    <div class="pot-body"></div>
+                    <div class="pot-rim"></div>
+                </div>
+                <p class="plant-caption" id="plantCaption">Сделайте первый глоток, чтобы разбудить росток 🌱</p>
+
+                <!-- Calendar popover -->
+                <div class="calendar-popover" id="calendarPopover" hidden>
+                    <div class="calendar-header">
+                        <button type="button" id="prevMonth" aria-label="Предыдущий месяц">‹</button>
+                        <span id="calendarTitle">Июль 2026</span>
+                        <button type="button" id="nextMonth" aria-label="Следующий месяц">›</button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                    <div class="calendar-legend">
+                        <span><i class="legend-dot goal-met"></i>Норма выполнена</span>
+                        <span><i class="legend-dot partial"></i>Частично</span>
+                    </div>
+                </div>
+
+                <!-- Wardrobe popover -->
+                <div class="wardrobe-popover" id="wardrobePopover" hidden>
+                    <div class="wardrobe-tabs">
+                        <button class="tab-btn active" data-tab="plant" type="button">Растение</button>
+                        <button class="tab-btn" data-tab="pot" type="button">Горшок</button>
+                        <button class="tab-btn" data-tab="bg" type="button">Фон</button>
+                    </div>
+
+                    <div class="wardrobe-panel" data-panel="plant">
+                        <button class="swatch active" data-theme="mint" style="--swatch-color:#4ade80">
+                            <span class="swatch-dot"></span>Мята
+                        </button>
+                        <button class="swatch" data-theme="emerald" style="--swatch-color:#10b981">
+                            <span class="swatch-dot"></span>Изумруд
+                        </button>
+                        <button class="swatch" data-theme="lavender" style="--swatch-color:#a78bfa">
+                            <span class="swatch-dot"></span>Лаванда
+                        </button>
+                        <button class="swatch" data-theme="coral" style="--swatch-color:#fb7185">
+                            <span class="swatch-dot"></span>Коралл
+                        </button>
+                    </div>
+
+                    <div class="wardrobe-panel" data-panel="pot" hidden>
+                        <button class="swatch active" data-theme="terracotta" style="--swatch-color:#c2694a">
+                            <span class="swatch-dot"></span>Терракота
+                        </button>
+                        <button class="swatch" data-theme="ceramic" style="--swatch-color:#38bdf8">
+                            <span class="swatch-dot"></span>Керамика
+                        </button>
+                        <button class="swatch" data-theme="marble" style="--swatch-color:#94a3b8">
+                            <span class="swatch-dot"></span>Мрамор
+                        </button>
+                        <button class="swatch" data-theme="copper" style="--swatch-color:#b8703a">
+                            <span class="swatch-dot"></span>Медь
+                        </button>
+                    </div>
+
+                    <div class="wardrobe-panel" data-panel="bg" hidden>
+                        <button class="swatch active" data-theme="sky" style="--swatch-color:#7dd3fc">
+                            <span class="swatch-dot"></span>Небо
+                        </button>
+                        <button class="swatch" data-theme="sunset" style="--swatch-color:#fb923c">
+                            <span class="swatch-dot"></span>Закат
+                        </button>
+                        <button class="swatch" data-theme="forest" style="--swatch-color:#34d399">
+                            <span class="swatch-dot"></span>Лес
+                        </button>
+                        <button class="swatch" data-theme="night" style="--swatch-color:#1e3a5f">
+                            <span class="swatch-dot"></span>Ночь
+                        </button>
+                    </div>
+
+                    <button class="sheet-close" id="closeWardrobe" type="button">Готово</button>
+                </div>
+            </section>
+
+            <section class="progress-card" id="progressCard" role="button" tabindex="0">
+                <div class="progress-top">
+                    <span class="progress-label">Выпито сегодня</span>
+                    <span class="progress-value"><strong id="currentAmount">0</strong>&nbsp;/&nbsp;2&nbsp;л</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-hint" id="progressHint">0% дневной нормы</div>
+            </section>
+
+            <button class="add-drink-btn" id="openDrinkSheet" type="button">
+                <span class="plus-icon">+</span> Добавить выпитый напиток
+            </button>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="./dashboard.html" class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span>Главная</span>
             </a>
-            
-            <div class="nav-links">
-                <a href="#features">Возможности</a>
-                <a href="#">Сообщество</a>
-                <a href="#">Тарифы</a>
-            </div>
-
-            <div class="auth-buttons">
-                <a href="./login.html" class="btn btn-outline">Вход</a>
-                <a href="./signup.html" class="btn btn-solid">Начать бесплатно</a>
-            </div>
+            <a href="./field.html" class="nav-item">
+                <span class="nav-icon">🌾</span>
+                <span>Поле</span>
+            </a>
+            <a href="./settings.html" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span>Настройки</span>
+            </a>
         </nav>
-    </header>
+    </div>
 
-    <section id="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <span class="eyebrow">🌞 Вода - источник жизни вашего внутренного сада</span>
-                <h1>Увлажняйте.<br>Растите.<br>Процветайте.</h1>
-                <p>Отслеживайте потребление воды и наблюдайте, как расцветает ваш виртуальный сад. Каждый глоток помогает вашим растениям превратиться в пышный, процветающий лес.</p>
-                
-                <button onclick="alert('Welcome to SipSprout! 🎉 (Demo CTA)')" class="cta-button">
-                    Начните выращивать сегодня!
-                </button>
-                
-                <div>
-                    <span class="social-proof">🌍 Присоединяйтесь к более чем 87 000 любителей осознанного наслаждения напитками!</span>
+    <!-- Drink picker bottom sheet -->
+    <div class="sheet-overlay" id="sheetOverlay"></div>
+    <div class="drink-sheet" id="drinkSheet" role="dialog" aria-label="Выбор напитка">
+        <div class="sheet-handle"></div>
+        <h3>Что вы выпили?</h3>
+        <div class="drink-grid">
+            <button class="drink-option" data-drink="water" data-default-ml="250"><span class="drink-emoji">💧</span><span>Вода</span></button>
+            <button class="drink-option" data-drink="tea" data-default-ml="200"><span class="drink-emoji">🍵</span><span>Чай</span></button>
+            <button class="drink-option" data-drink="coffee" data-default-ml="150"><span class="drink-emoji">☕</span><span>Кофе</span></button>
+            <button class="drink-option" data-drink="juice" data-default-ml="200"><span class="drink-emoji">🧃</span><span>Сок</span></button>
+            <button class="drink-option" data-drink="kvass" data-default-ml="300"><span class="drink-emoji">🍶</span><span>Квас</span></button>
+            <button class="drink-option" data-drink="beer" data-default-ml="330"><span class="drink-emoji">🍺</span><span>Пиво</span></button>
+            <button class="drink-option" data-drink="wine" data-default-ml="150"><span class="drink-emoji">🍷</span><span>Вино</span></button>
+            <button class="drink-option" data-drink="soda" data-default-ml="250"><span class="drink-emoji">🥤</span><span>Газировка</span></button>
+        </div>
+
+        <div class="volume-step" id="volumeStep" hidden>
+            <button class="volume-back" id="volumeBack" type="button">‹ Другой напиток</button>
+            <p class="volume-label"><span id="selectedDrinkEmoji"></span> Сколько вы выпили?</p>
+
+            <div class="volume-chips" id="volumeChips">
+                <button type="button" data-ml="100">100 мл</button>
+                <button type="button" data-ml="150">150 мл</button>
+                <button type="button" data-ml="200">200 мл</button>
+                <button type="button" data-ml="250">250 мл</button>
+                <button type="button" data-ml="330">330 мл</button>
+                <button type="button" data-ml="500">500 мл</button>
+            </div>
+
+            <div class="volume-custom">
+                <label for="customMl">Свой объём, мл</label>
+                <div class="volume-custom-row">
+                    <input type="number" id="customMl" min="10" max="3000" step="10" placeholder="например, 180">
+                    <button class="btn btn-solid" id="confirmCustom" type="button">Добавить</button>
                 </div>
             </div>
-
-            <div class="tree-container">
-                <!-- <div class="growing-tree">
-                    <div class="ground"></div>
-
-                    <div class="seed"></div>
-
-                    <div class="sprout"></div>
-
-                    <div class="trunk"></div>
-
-                    <div class="branch branch-left"></div>
-                    <div class="branch branch-right"></div>
-
-                    <div class="canopy">
-                        <div class="leaf leaf-1"></div>
-                        <div class="leaf leaf-2"></div>
-                        <div class="leaf leaf-3"></div>
-                        <div class="leaf leaf-4"></div>
-                        <div class="leaf leaf-5"></div>
-                        <div class="leaf leaf-6"></div>
-                    </div>
-
-                    <div class="droplet droplet1"></div>
-                    <div class="droplet droplet2"></div>
-                    <div class="droplet droplet3"></div>
-                </div> -->
-            </div>
         </div>
-    </section>
 
-    <section id="features">
-        <div class="section-header">
-            <h2>Наблюдайте, как <span style="color: #289c54;">расцветают</span> ваши привычки</h2>
-            <p>Простые и красивые приспособления, которые превратят ежедневное поддержание водного баланса в радостный ритуал.</p>
+        <button class="sheet-close" id="closeSheet" type="button">Отмена</button>
+    </div>
+
+    <div class="sheet-overlay" id="historyOverlay"></div>
+    <div class="history-sheet" id="historySheet" role="dialog" aria-label="История напитков">
+        <div class="sheet-handle"></div>
+        <h3>История сегодня</h3>
+        <div class="history-list" id="historyList">
+            <!-- JS заполняет -->
         </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <span class="feature-icon">💧</span>
-                <h3>Интеллектуальный трекер воды</h3>
-                <p>Легко записывайте потребление жидкости с помощью быстрых кнопок, голосового ввода и интеллектуальных напоминаний, которые адаптируются к вашему образу жизни.</p>
-            </div>
+        <p class="history-empty" id="historyEmpty">Пока ничего не добавлено</p>
+        <button class="sheet-close" id="closeHistory" type="button">Закрыть</button>
+    </div>
 
-            <div class="feature-card">
-                <span class="feature-icon">🌿</span>
-                <h3>Выращивайте настоящие растения</h3>
-                <p>От саженцев до величественных деревьев — ваше потребление воды напрямую питает ваш личный цифровой сад, который развивается вместе с вами.</p>
-            </div>
-            
-            <div class="feature-card">
-                <span class="feature-icon">📊</span>
-                <h3>Прекрасные идеи</h3>
-                <p>Визуальные эффекты, тенденции в области увлажнения почвы и персонализированные советы. Отмечайте достижения вашего сада, когда он достигает новых высот.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-top">
-                <div class="logo" style="color: #e0f2fe;">
-                    <span style="font-size: 2rem;">🌱</span>
-                    <span style="font-size: 1.6rem;">SipSprout</span>
-                </div>
-                <div class="nav-footer">
-                    <div style="display: flex; gap: 1.5rem; font-size: 14px; opacity: 0.8; max-width: 1600px;">
-                        <a href="#" style="color: inherit; text-decoration: none;">Вопросы</a>
-                        <a href="#" style="color: inherit; text-decoration: none;">Оферта</a>
-                        <a href="#" style="color: inherit; text-decoration: none;">Политика конфиденциальности</a>
-                        <a href="#" style="color: inherit; text-decoration: none;">Согласие на ПДн</a>
-                        <a href="#" style="color: inherit; text-decoration: none;">Возврат</a>
-                        <a href="#" style="color: inherit; text-decoration: none;">Cookie</a>
-                        <a href="#" style="color: inherit; text-decoration: none;">Telegram</a>
-                    </div>
-                </div>
-                <p style="opacity: 0.7;">© 2026 SipSprout. Made with love for better hydration.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../scripts/main.js"></script>
+    <script src="../../dashboard.js"></script>
 </body>
 </html>

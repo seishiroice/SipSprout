@@ -21,7 +21,7 @@
 
 body {
     font-family: var(--font-body);
-    background-color: var(--offwhite);
+    /* background-color: var(--offwhite); */
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
@@ -299,6 +299,93 @@ nav {
     color: var(--deep-green);
 }
 
+/* ==================== FAQ ==================== */
+#faq {
+    padding: 120px 2.5rem;
+    background: #ffffff;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-list {
+    margin-top: 3rem;
+}
+
+.faq-item {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: color 0.2s;
+}
+
+.faq-question:hover {
+    color: var(--moss);
+}
+
+.faq-icon {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #94a3b8;
+    transition: transform 0.3s, color 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.faq-item.active .faq-icon {
+    color: var(--moss);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease, padding 0.25s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding-bottom: 1.4rem;
+}
+
+.faq-answer p {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.faq-footer {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.faq-footer a {
+    color: var(--moss);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.faq-footer a:hover {
+    color: var(--deep-green);
+}
+
 /* ==================== FOOTER ==================== */
 footer {
     background: var(--deep-green);
@@ -417,6 +504,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     position: relative;
     overflow: hidden;
     background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%);
@@ -486,6 +574,31 @@ footer {
     transform: translateX(-3px);
 }
 
+.auth-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 0.7rem 1.4rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.12);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--deep-green);
+    z-index: 2;
+    position: relative;
+}
+
+.auth-brand .logo-emoji {
+    font-size: 1.6rem;
+    line-height: 1;
+    animation: sprout 3s ease-in-out infinite;
+}
+
 .auth-card {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
@@ -525,13 +638,11 @@ footer {
 .auth-card-header {
     text-align: center;
     margin-bottom: 1.5rem;
-    padding-top: 2.25rem;
+    padding-top: 2rem;
 }
 
 .auth-card-header .logo {
     justify-content: center;
-    font-size: 2.1rem;
-    margin-bottom: 8px;
 }
 
 .auth-card-header h2 {
@@ -607,6 +718,12 @@ footer {
     box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
 }
 
+/* Строка с "Пароль" и ссылкой "Забыли пароль?" в одну линию, при необходимости */
+.password-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .forgot-link {
     color: var(--moss);
     font-size: 0.9rem;
@@ -653,9 +770,4 @@ footer {
     .bg-blob, .logo-emoji, .droplet, .tree-photo {
         animation: none !important;
     }
-}
-
-.password-header {
-    display: flex;
-    justify-content: space-between;
 }
