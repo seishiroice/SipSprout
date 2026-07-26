@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SipSprout • Регистрация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+
+        <a href="./dashboard.html" class="back-link">← На главную</a>
+
+        <div class="auth-card">
+            <div class="fill-bar"><span></span></div>
+
+            <div class="auth-card-header">
+                <div class="logo">
+                    <span class="logo-emoji">🌱</span> SipSprout
+                </div>
+                <h2>Создайте аккаунт</h2>
+                <p class="auth-subtitle">Начните превращать воду в цветущий сад.</p>
+            </div>
+
+            <div class="auth-switch">
+                <a href="./login.html" class="switch-btn">Вход</a>
+                <a href="./signup.html" class="switch-btn active">Регистрация</a>
+            </div>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label>🙋 Имя</label>
+                    <input type="text" name="name" placeholder="Алекс Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label>📧 Email</label>
+                    <input type="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>🔒 Пароль</label>
+                    <input type="password" name="password" placeholder="Придумайте надёжный пароль" required>
+                </div>
+                <button type="submit" class="btn btn-solid full-width">Создать аккаунт</button>
+
+                <p class="terms">Регистрируясь, вы соглашаетесь с <a href="#">Условиями</a> и <a href="#">Политикой конфиденциальности</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
